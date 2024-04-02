@@ -291,6 +291,8 @@ int toupper( int c ) {
 #endif
 //#ifndef _MSC_VER
 
+#if _MSC_VER < 1900 // Q3A-Exp - Fix Visual Studio 2022 Build.
+
 void *memmove( void *dest, const void *src, size_t count ) {
 	int		i;
 
@@ -305,6 +307,8 @@ void *memmove( void *dest, const void *src, size_t count ) {
 	}
 	return dest;
 }
+
+#endif  // Q3A-Exp - Fix Visual Studio 2022 Build.
 
 
 #if 0
