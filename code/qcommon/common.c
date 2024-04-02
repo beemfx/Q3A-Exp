@@ -2457,6 +2457,10 @@ void Com_Init( char *commandLine ) {
 	Cmd_AddCommand ("quit", Com_Quit_f);
 	Cmd_AddCommand ("changeVectors", MSG_ReportChangeVectors_f );
 	Cmd_AddCommand ("writeconfig", Com_WriteConfig_f );
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Add a performance test for the baseline
+	void Com_DoExpTest_f();
+	Cmd_AddCommand ("doexptest", Com_DoExpTest_f);
+#endif // Q3A-Exp - Begin - Add a performance test for the baseline
 
 	s = va("%s %s %s", Q3_VERSION, CPUSTRING, __DATE__ );
 	com_version = Cvar_Get ("version", s, CVAR_ROM | CVAR_SERVERINFO );
@@ -2554,6 +2558,34 @@ void Com_WriteConfiguration( void ) {
 #endif
 }
 
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Add a performance test for the baseline
+static float TotalRes = 0.f;
+void Com_DoExpTest_f( void ) 
+{
+	static int	seed = 0x92;
+	int StartTime, EndTime, i, NumTests;
+
+	char NumTestsStr[MAX_QPATH];
+
+	if ( Cmd_Argc() != 2 ) {
+		Com_Printf( "Usage: doexptest <num_iterations>\n" );
+		return;
+	}
+
+	Q_strncpyz( NumTestsStr, Cmd_Argv(1), sizeof( NumTestsStr ) );
+	NumTests = atoi(NumTestsStr);
+
+	StartTime = Sys_Milliseconds();
+	for (i = 0; i < NumTests; i++)
+	{
+		float Res = Q_rsqrt( Q_random(&seed) );
+		TotalRes += Res; // Keep running total to make sure our code doesn't get optimized out.
+	}
+	EndTime = Sys_Milliseconds();
+	int TotalTime = EndTime - StartTime;
+	Com_Printf( "Total Time for %i iterations was %ims\n" , NumTests, TotalTime );
+}
+#endif // Q3A-Exp - Begin - Add a performance test for the baseline
 
 /*
 ===============
