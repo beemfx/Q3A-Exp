@@ -1,0 +1,5 @@
+# Stuff to get ignored from build
+*.ncb
+*.suo
+_Exp/_Build/
+_Exp/_Bin/
