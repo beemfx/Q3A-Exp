@@ -944,6 +944,12 @@ This routine would be a bit simpler with a goto but i abstained
 
 =================
 */
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Always verify PAKs
+static void SV_VerifyPaks_f( client_t *cl )
+{
+	cl->pureAuthentic = 1;
+}
+#else // Q3A-Exp - Always verify PAKs
 static void SV_VerifyPaks_f( client_t *cl ) {
 	int nChkSum1, nChkSum2, nClientPaks, nServerPaks, i, j, nCurArg;
 	int nClientChkSum[1024];
@@ -1093,6 +1099,7 @@ static void SV_VerifyPaks_f( client_t *cl ) {
 		}
 	}
 }
+#endif // Q3A-Exp - End - Always verify PAKs
 
 /*
 =================

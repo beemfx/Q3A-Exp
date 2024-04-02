@@ -478,6 +478,14 @@ vm_t *VM_Create( const char *module, int (*systemCalls)(int *),
 		}
 	}
 
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Force experimental builds to always use native DLL
+	// In the experiment we always want native.
+	// Technically we can compile the experimental QVM, but with native we don't have
+	// to worry about pk3 files and we can be sure what code we are running.
+	// (Compiling with current Visual Studio 2022 compiler options also breaks the VM.)
+	interpret = VMI_NATIVE;
+#endif // Q3A-Exp - End - Force experimental builds to always use native DLL
+
 	if ( interpret == VMI_NATIVE ) {
 		// try to load as a system dll
 		Com_Printf( "Loading dll file %s.\n", vm->name );
@@ -486,8 +494,13 @@ vm_t *VM_Create( const char *module, int (*systemCalls)(int *),
 			return vm;
 		}
 
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Force experimental builds to always use native DLL
+		Com_Printf( "Failed to load dll, the experiment requires native DLL.\n" );
+		return NULL;
+#else // Q3A-Exp
 		Com_Printf( "Failed to load dll, looking for qvm.\n" );
 		interpret = VMI_COMPILED;
+#endif // Q3A-Exp - End - Force experimental builds to always use native DLL
 	}
 
 	// load the image

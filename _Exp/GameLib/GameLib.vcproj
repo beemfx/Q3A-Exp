@@ -31,7 +31,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../_Bin/gamex86-$(ConfigurationName).dll"
+				OutputFile="../_Bin/qagamex86-$(ConfigurationName).dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="../../code/game/game.def"
 				GenerateDebugInformation="TRUE"
@@ -78,7 +78,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../_Bin/gamex86-$(ConfigurationName).dll"
+				OutputFile="../_Bin/qagamex86-$(ConfigurationName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="../../code/game/game.def"
 				GenerateDebugInformation="TRUE"
@@ -126,7 +126,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../_Bin/gamex86-$(ConfigurationName).dll"
+				OutputFile="../_Bin/qagamex86-$(ConfigurationName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="../../code/game/game.def"
 				GenerateDebugInformation="TRUE"
@@ -174,7 +174,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../_Bin/gamex86-$(ConfigurationName).dll"
+				OutputFile="../_Bin/qagamex86-$(ConfigurationName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="../../code/game/game.def"
 				GenerateDebugInformation="TRUE"

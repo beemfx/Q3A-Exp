@@ -95,7 +95,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>../_Bin/gamex86-$(Configuration).dll</OutputFile>
+      <OutputFile>../_Bin/qagamex86-$(Configuration).dll</OutputFile>
       <ModuleDefinitionFile>../../code/game/game.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)GameLib.pdb</ProgramDatabaseFile>
@@ -113,7 +113,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>../_Bin/gamex86-$(Configuration).dll</OutputFile>
+      <OutputFile>../_Bin/qagamex86-$(Configuration).dll</OutputFile>
       <ModuleDefinitionFile>../../code/game/game.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -132,7 +132,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>../_Bin/gamex86-$(Configuration).dll</OutputFile>
+      <OutputFile>../_Bin/qagamex86-$(Configuration).dll</OutputFile>
       <ModuleDefinitionFile>../../code/game/game.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -151,7 +151,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>../_Bin/gamex86-$(Configuration).dll</OutputFile>
+      <OutputFile>../_Bin/qagamex86-$(Configuration).dll</OutputFile>
       <ModuleDefinitionFile>../../code/game/game.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

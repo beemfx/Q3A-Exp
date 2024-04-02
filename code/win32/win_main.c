@@ -162,6 +162,9 @@ Sys_Print
 */
 void Sys_Print( const char *msg ) {
 	Conbuf_AppendText( msg );
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Output console logging to debugger
+	OutputDebugStringA(msg);
+#endif // Q3A-Exp - End - Output console logging to debugger
 }
 
 
@@ -523,6 +526,51 @@ TTimo: added some verbosity in debug
 */
 extern char		*FS_BuildOSPath( const char *base, const char *game, const char *qpath );
 
+
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Replacement function to load experiment DLLs
+void * QDECL Sys_LoadDll( const char *name, char *fqpath , int (QDECL **entryPoint)(int, ...), int (QDECL *systemcalls)(int, ...) ) 
+{
+	HINSTANCE	libHandle;
+	void	(QDECL *dllEntry)( int (QDECL *syscallptr)(int, ...) );
+	char	filename[MAX_QPATH];
+
+	*fqpath = 0 ;		// added 7/20/02 by T.Ray
+
+#if defined(Q3A_FSQRT)
+	Com_sprintf( filename, sizeof( filename ), "%sx86-fsqrt.dll", name );
+#elif defined(Q3A_BASE)
+	Com_sprintf( filename, sizeof( filename ), "%sx86-base.dll", name );
+#endif
+	Com_Printf( "Using DLL: %s\n", filename);
+
+	libHandle = LoadLibrary( filename );
+	if (libHandle)
+	{
+		Com_Printf("LoadLibrary '%s' ok\n", filename);
+	}
+	else
+	{
+		Com_Printf("LoadLibrary '%s' failed\n", filename);
+	}
+
+	if ( !libHandle )
+	{
+		return NULL;
+	}
+
+	dllEntry = ( void (QDECL *)( int (QDECL *)( int, ... ) ) )GetProcAddress( libHandle, "dllEntry" ); 
+	*entryPoint = (int (QDECL *)(int,...))GetProcAddress( libHandle, "vmMain" );
+	if ( !*entryPoint || !dllEntry )
+	{
+		FreeLibrary( libHandle );
+		return NULL;
+	}
+	dllEntry( systemcalls );
+
+	if ( libHandle ) Q_strncpyz ( fqpath , filename , MAX_QPATH ) ;		// added 7/20/02 by T.Ray
+	return libHandle;
+}
+#else // Q3A-Exp - Replacement function to load experiment DLLs
 // fqpath param added 7/20/02 by T.Ray - Sys_LoadDll is only called in vm.c at this time
 // fqpath will be empty if dll not loaded, otherwise will hold fully qualified path of dll module loaded
 // fqpath buffersize must be at least MAX_QPATH+1 bytes long
@@ -617,6 +665,7 @@ void * QDECL Sys_LoadDll( const char *name, char *fqpath , int (QDECL **entryPoi
 	if ( libHandle ) Q_strncpyz ( fqpath , filename , MAX_QPATH ) ;		// added 7/20/02 by T.Ray
 	return libHandle;
 }
+#endif // Q3A-Exp - Endif - Replacement function to load experiment DLLs
 
 
 /*

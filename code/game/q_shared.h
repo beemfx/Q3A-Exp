@@ -29,6 +29,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define	Q3_VERSION		"Q3 1.32b"
 // 1.32 released 7-10-2002
 
+// Q3A-Exp - Begin - Version Information for Experiments
+#ifdef Q3A_BASE
+#undef Q3_VERSION
+#define Q3_VERSION "Q3 1.32b (BASE)"
+#endif
+
+#ifdef Q3A_FSQRT
+#undef Q3_VERSION
+#define Q3_VERSION "Q3 1.32b (FSQRT)"
+#endif
+// Q3A-Exp - Begin - Version Information for Experiments
+
 #define MAX_TEAMNAME 32
 
 #ifdef _WIN32
