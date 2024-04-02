@@ -2566,7 +2566,7 @@ static float TotalRes = 0.f;
 void Com_DoExpTest_f( void ) 
 {
 	static int	seed = 0x92;
-	int StartTime, EndTime, i, NumTests;
+	int StartTime, EndTime, i, NumTests, TotalTime;
 
 	char NumTestsStr[MAX_QPATH];
 
@@ -2585,7 +2585,7 @@ void Com_DoExpTest_f( void )
 		TotalRes += Res; // Keep running total to make sure our code doesn't get optimized out.
 	}
 	EndTime = Sys_Milliseconds();
-	int TotalTime = EndTime - StartTime;
+	TotalTime = EndTime - StartTime;
 	Com_Printf( "Total Time for %i iterations was %ims\n" , NumTests, TotalTime );
 }
 #endif // Q3A-Exp - Begin - Add a performance test for the baseline
