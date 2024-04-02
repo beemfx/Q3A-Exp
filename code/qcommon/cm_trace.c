@@ -130,6 +130,21 @@ float CM_VectorDistanceSquared(vec3_t p1, vec3_t p2) {
 SquareRootFloat
 ================
 */
+#ifdef Q3A_FSQRT // Q3A-Exp - Begin - Implement experimental version of Q_rsqrt
+float SquareRootFloat(float number)
+{
+	// I am really not sure what is going on with the original
+	// implementation of SquareRootFloat, it seems to be the
+	// inverse square root, but the name of the function doesn't
+	// imply that it is inverted. I also never hit a situation
+	// where it is called so I think it might be a bug if it
+	// wasn't really intended to be the inverse square root.
+	// (The game never seems to do capsule against capsule
+	// collision detection, at least as much as I played, which
+	// is where this is used.)
+	return 1.f / sqrt(number);
+}
+#else // Q3A-Exp - Implement experimental version of Q_rsqrt
 float SquareRootFloat(float number) {
 	long i;
 	float x, y;
@@ -144,6 +159,7 @@ float SquareRootFloat(float number) {
 	y  = y * ( f - ( x * y * y ) );
 	return number * y;
 }
+#endif // Q3A-Exp - End - Implement experimental version of Q_rsqrt
 
 
 /*

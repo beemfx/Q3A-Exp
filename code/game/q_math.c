@@ -549,6 +549,12 @@ void VectorRotate( vec3_t in, vec3_t matrix[3], vec3_t out )
 /*
 ** float q_rsqrt( float number )
 */
+#ifdef Q3A_FSQRT // Q3A-Exp - Begin - Implement experimental version of Q_rsqrt
+float Q_rsqrt( float number )
+{
+	return 1.f / sqrt( number );
+}
+#else // Q3A-Exp - Implement experimental version of Q_rsqrt
 float Q_rsqrt( float number )
 {
 	long i;
@@ -570,6 +576,7 @@ float Q_rsqrt( float number )
 #endif
 	return y;
 }
+#endif // Q3A-Exp - End - Implement experimental version of Q_rsqrt
 
 float Q_fabs( float f ) {
 	int tmp = * ( int * ) &f;
