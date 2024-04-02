@@ -1,0 +1,60 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Q3AGame", "Q3AGame\Q3AGame.vcxproj", "{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CGameLib", "CGameLib\CGameLib.vcxproj", "{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLib", "GameLib\GameLib.vcxproj", "{A3E08B82-02C7-46EA-BF4A-DF427887BD76}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Q3UILib", "Q3UILib\Q3UILib.vcxproj", "{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		base|x86 = base|x86
+		Debug|x86 = Debug|x86
+		fsqrt|x86 = fsqrt|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.base|x86.ActiveCfg = base|Win32
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.base|x86.Build.0 = base|Win32
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.Debug|x86.ActiveCfg = Debug|Win32
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.Debug|x86.Build.0 = Debug|Win32
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.fsqrt|x86.ActiveCfg = fsqrt|Win32
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.fsqrt|x86.Build.0 = fsqrt|Win32
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.Release|x86.ActiveCfg = Release|Win32
+		{D6DA0F19-041A-44A0-9AAB-AE9B0BB9CFA8}.Release|x86.Build.0 = Release|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.base|x86.ActiveCfg = base|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.base|x86.Build.0 = base|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.Debug|x86.ActiveCfg = Debug|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.Debug|x86.Build.0 = Debug|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.fsqrt|x86.ActiveCfg = fsqrt|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.fsqrt|x86.Build.0 = fsqrt|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.Release|x86.ActiveCfg = Release|Win32
+		{A122BFC9-FA9C-4E8D-94B7-F3CB9A5B9FFE}.Release|x86.Build.0 = Release|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.base|x86.ActiveCfg = base|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.base|x86.Build.0 = base|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.Debug|x86.ActiveCfg = Debug|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.Debug|x86.Build.0 = Debug|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.fsqrt|x86.ActiveCfg = fsqrt|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.fsqrt|x86.Build.0 = fsqrt|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.Release|x86.ActiveCfg = Release|Win32
+		{A3E08B82-02C7-46EA-BF4A-DF427887BD76}.Release|x86.Build.0 = Release|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.base|x86.ActiveCfg = base|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.base|x86.Build.0 = base|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.Debug|x86.ActiveCfg = Debug|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.Debug|x86.Build.0 = Debug|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.fsqrt|x86.ActiveCfg = fsqrt|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.fsqrt|x86.Build.0 = fsqrt|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.Release|x86.ActiveCfg = Release|Win32
+		{6C2A4EF1-CBF6-4CBB-8A5A-3C6575FD0E24}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B30B5DA-C97E-486D-896E-EFF6FDD639EC}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{8f35db19-a4f3-47fd-8ecf-95f1dd0e7fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\cgame">
+      <UniqueIdentifier>{d8e43eb1-e2a1-40af-acb9-f4a9222cc868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\game">
+      <UniqueIdentifier>{26841160-a16a-4bc9-8dd4-a53b532a4f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\ui">
+      <UniqueIdentifier>{f1067eb3-8930-4e34-aeb4-b9fff17825ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers">
+      <UniqueIdentifier>{82a4cbb0-051d-41a9-bf5c-478b9c846052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\cgame">
+      <UniqueIdentifier>{edc6b263-4923-4a23-83e5-6f98c3d080f3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\code\cgame\cg_consolecmds.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_draw.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_drawtools.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_effects.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_ents.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_event.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_info.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_localents.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_main.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_marks.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_players.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_playerstate.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_predict.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_scoreboard.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_servercmds.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_snapshot.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_syscalls.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_view.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\cgame\cg_weapons.c">
+      <Filter>code\cgame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\bg_lib.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\bg_misc.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\bg_pmove.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\bg_slidemove.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\q_math.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\q_shared.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\ui\ui_shared.c">
+      <Filter>code\ui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\code\cgame\cgame.def">
+      <Filter>code\cgame</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\code\cgame\cg_local.h">
+      <Filter>headers\cgame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\cgame\cg_public.h">
+      <Filter>headers\cgame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\cgame\tr_types.h">
+      <Filter>headers\cgame</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

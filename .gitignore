@@ -1,5 +1,7 @@
 # Stuff to get ignored from build
 *.ncb
 *.suo
+*.vcxproj.user
+_Exp/.vs/
 _Exp/_Build/
 _Exp/_Bin/

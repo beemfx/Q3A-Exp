@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="code">
+      <UniqueIdentifier>{70c2a2d4-b143-4144-82a1-f8dba9538757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\q3_ui">
+      <UniqueIdentifier>{329dd6fa-32bd-460c-99b7-5f822ce5d3f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\ui">
+      <UniqueIdentifier>{86ed17f0-f76d-4de0-a778-25cc1e135ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="code\game">
+      <UniqueIdentifier>{9fb7dcdd-c3c0-437d-84a6-9907306e848a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers">
+      <UniqueIdentifier>{bb85e719-debf-45d3-90dd-ad79f7fce32c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\q3_ui">
+      <UniqueIdentifier>{2eb2db3d-5159-47f7-a6f1-4e3f5fdc4ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\ui">
+      <UniqueIdentifier>{7476b3c7-a504-486d-b0df-0d7769b6950e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\code\q3_ui\ui.def">
+      <Filter>code\q3_ui</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\code\q3_ui\ui_addbots.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_atoms.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_cdkey.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_cinematics.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_confirm.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_connect.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_controls2.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_credits.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_demo2.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_display.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_gameinfo.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_ingame.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_loadconfig.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_main.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_menu.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_mfield.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_mods.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_network.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_options.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_playermodel.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_players.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_playersettings.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_preferences.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_qmenu.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_removebots.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_saveconfig.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_serverinfo.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_servers2.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_setup.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_sound.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_sparena.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_specifyserver.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_splevel.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_sppostgame.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_spreset.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_spskill.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_startserver.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_team.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_teamorders.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\q3_ui\ui_video.c">
+      <Filter>code\q3_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\ui\ui_syscalls.c">
+      <Filter>code\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\bg_misc.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\q_math.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\game\q_shared.c">
+      <Filter>code\game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\code\q3_ui\keycodes.h">
+      <Filter>headers\q3_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\q3_ui\ui_local.h">
+      <Filter>headers\q3_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\ui\keycodes.h">
+      <Filter>headers\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\ui\ui_local.h">
+      <Filter>headers\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\ui\ui_public.h">
+      <Filter>headers\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\ui\ui_shared.h">
+      <Filter>headers\ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
