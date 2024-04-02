@@ -102,6 +102,10 @@ char	com_errorMessage[MAXPRINTMSG];
 void Com_WriteConfig_f( void );
 void CIN_CloseAllVideos();
 
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Add a performance test for the baseline
+void Com_DoExpTest_f();
+#endif // Q3A-Exp - Begin - Add a performance test for the baseline
+
 //============================================================================
 
 static char	*rd_buffer;
@@ -2458,7 +2462,6 @@ void Com_Init( char *commandLine ) {
 	Cmd_AddCommand ("changeVectors", MSG_ReportChangeVectors_f );
 	Cmd_AddCommand ("writeconfig", Com_WriteConfig_f );
 #ifdef Q3A_EXP // Q3A-Exp - Begin - Add a performance test for the baseline
-	void Com_DoExpTest_f();
 	Cmd_AddCommand ("doexptest", Com_DoExpTest_f);
 #endif // Q3A-Exp - Begin - Add a performance test for the baseline
 
