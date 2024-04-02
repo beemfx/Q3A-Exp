@@ -142,7 +142,7 @@ float SquareRootFloat(float number)
 	// (The game never seems to do capsule against capsule
 	// collision detection, at least as much as I played, which
 	// is where this is used.)
-	return 1.f / sqrt(number);
+	return number / sqrt(number);
 }
 #else // Q3A-Exp - Implement experimental version of Q_rsqrt
 float SquareRootFloat(float number) {
