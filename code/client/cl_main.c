@@ -402,6 +402,27 @@ void CL_DemoCompleted( void ) {
 			Com_Printf ("%i frames, %3.1f seconds: %3.1f fps\n", clc.timeDemoFrames,
 			time/1000.0, clc.timeDemoFrames*1000.0 / time);
 		}
+#ifdef Q3A_EXP // Q3A-Exp - Begin - Creating log for demos
+		{
+			FILE* fp = fopen("q3a-exp-log.csv", "at");
+			if (fp != NULL)
+			{
+				fseek(fp, 0, SEEK_END);
+				if (ftell(fp) == 0)
+				{
+					// if this is the first time we are writing the file, write the header.
+					fprintf(fp, "Version, Frames, Seconds, FPS\n");
+				}
+
+				fprintf(fp, "%s, %i, %3.1f, %3.1f\n"
+					, Q3_VERSION
+					, clc.timeDemoFrames
+					, time / 1000.0
+					, clc.timeDemoFrames * 1000.0 / time);
+				fclose(fp);
+			}
+		}
+#endif // Q3A-Exp - End - Creating log for demos
 	}
 
 	CL_Disconnect( qtrue );
