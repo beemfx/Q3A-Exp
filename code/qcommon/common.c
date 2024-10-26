@@ -2587,6 +2587,26 @@ void Com_DoExpTest_f( void )
 	EndTime = Sys_Milliseconds();
 	TotalTime = EndTime - StartTime;
 	Com_Printf( "Total Time for %i iterations was %ims\n" , NumTests, TotalTime );
+
+	{
+		FILE* fp = fopen("q3a-exptest-log.csv", "at");
+		if (fp != NULL)
+		{
+			fseek(fp, 0, SEEK_END);
+			if (ftell(fp) == 0)
+			{
+				// if this is the first time we are writing the file, write the header.
+				fprintf(fp, "Version, Iterations, Milliseconds, Seconds\n");
+			}
+
+			fprintf(fp, "%s, %i, %i, %3.1f\n"
+				, Q3_VERSION
+				, NumTests
+				, TotalTime
+				, TotalTime / 1000.0);
+			fclose(fp);
+		}
+	}
 }
 #endif // Q3A-Exp - Begin - Add a performance test for the baseline
 
