@@ -9,6 +9,7 @@
 #include <conio.h>
 
 static LARGE_INTEGER Main_HighPerfFreq;
+static BOOL Main_bPauseAtEnd = FALSE;
 
 static int Main_GetNumIters(int argc, char* argv[])
 {
@@ -31,6 +32,15 @@ static int Main_GetNumIters(int argc, char* argv[])
 #endif
 		{
 			bNextIsIters = 1;
+		}
+
+#if _MSC_VER > 1700
+		if (!_stricmp(argv[i], "-pause"))
+#else
+		if (!stricmp(argv[i], "-pause"))
+#endif
+		{
+			Main_bPauseAtEnd = TRUE;
 		}
 	}
 
@@ -126,8 +136,11 @@ int main(int argc, char* argv[])
 	Main_DoTestA(NumIters);
 	Main_DoTestB(NumIters);
 
-	printf("Test complete. Press any key to exit.\n");
-	_getch();
+	if (Main_bPauseAtEnd)
+	{
+		printf("Test complete. Press any key to exit.\n");
+		_getch();
+	}
 
 	return 0;
 }
