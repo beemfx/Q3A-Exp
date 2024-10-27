@@ -24,7 +24,11 @@ static int Main_GetNumIters(int argc, char* argv[])
 			Out = atoi(argv[i]);
 		}
 
-		if (stricmp(argv[i], "-i"))
+#if _MSC_VER > 1700
+		if (!_stricmp(argv[i], "-i"))
+#else
+		if (!stricmp(argv[i], "-i"))
+#endif
 		{
 			bNextIsIters = 1;
 		}
@@ -44,11 +48,12 @@ static void Main_OutputResult(const char* TestType, int NumIters, LARGE_INTEGER 
 		if (ftell(fp) == 0)
 		{
 			// if this is the first time we are writing the file, write the header.
-			fprintf(fp, "Version,Test Type,Iterations,Low Counter,Low Frequency,Seconds,Counter (High),Frequency (High)\n");
+			fprintf(fp, "Version,Bits,Test Type,Iterations,Low Counter,Low Frequency,Seconds,Counter (High),Frequency (High)\n");
 		}
 		
-		fprintf(fp, "%i,%s,%i,%u,%u,%g,%u,%u\n"
+		fprintf(fp, "%i,%i,%s,%i,%u,%u,%g,%u,%u\n"
 			, _MSC_VER
+			, sizeof(void*) * 8
 			, TestType
 			, NumIters
 			, Counter.LowPart
@@ -77,12 +82,13 @@ static void Main_DoTestA(int NumIters)
 	QueryPerformanceCounter(&StartTime);
 	for (i = 0; i < NumIters; i++)
 	{
-		float A = Q_rsqrt_A( i * .245f );
+		float A = Q_rsqrt_clib(rand() / 1000.f);
 		Total += A;
 	}
 	QueryPerformanceCounter(&EndTime);
 	Duration.QuadPart = EndTime.QuadPart - StartTime.QuadPart;
 	Main_OutputResult("clib", NumIters, Duration);
+	printf("Sum: %g\n", Total); // If we didn't print out the Sum (or otherwise  use it), the x86 version would optimize everything out on Visual Studio 2022.
 }
 
 static void Main_DoTestB(int NumIters)
@@ -95,12 +101,13 @@ static void Main_DoTestB(int NumIters)
 	QueryPerformanceCounter(&StartTime);
 	for (i = 0; i < NumIters; i++)
 	{
-		float A = Q_rsqrt_B( i * .245f );
+		float A = Q_rsqrt_newton(rand() / 1000.f);
 		Total += A;
 	}
 	QueryPerformanceCounter(&EndTime);
 	Duration.QuadPart = EndTime.QuadPart - StartTime.QuadPart;
 	Main_OutputResult("newton", NumIters, Duration);
+	printf("Sum: %g\n", Total); // If we didn't print out the Sum (or otherwise  use it), the x86 version would optimize everything out on Visual Studio 2022.
 }
 
 int main(int argc, char* argv[])
@@ -119,6 +126,7 @@ int main(int argc, char* argv[])
 	Main_DoTestA(NumIters);
 	Main_DoTestB(NumIters);
 
+	printf("Test complete. Press any key to exit.\n");
 	_getch();
 
 	return 0;

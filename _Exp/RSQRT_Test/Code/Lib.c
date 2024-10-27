@@ -1,11 +1,13 @@
+// RSQRT_Test
+
 #include <math.h>
 
-float Q_rsqrt_A( float number )
+float Q_rsqrt_clib( float number )
 {
 	return 1.f / sqrt( number );
 }
 
-float Q_rsqrt_B( float number )
+float Q_rsqrt_newton( float number )
 {
 	long i;
 	float x2, y;
