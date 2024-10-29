@@ -19,7 +19,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="LibASM.asm">
+    <MASM Include="Code\LibASM.asm">
       <Filter>Code</Filter>
     </MASM>
   </ItemGroup>
