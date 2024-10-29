@@ -18,4 +18,9 @@
       <Filter>Code</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <MASM Include="LibASM.asm">
+      <Filter>Code</Filter>
+    </MASM>
+  </ItemGroup>
 </Project>
