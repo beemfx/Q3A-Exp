@@ -22,6 +22,20 @@ static int Main_NumIters = 100000; // Default value of 100,000
 static float Main_RunningSum = 0.f;
 static enum main_test_type Main_TestType = TT_RandSpeed;
 
+#if _MSC_VER >= 1900
+#if defined(Config_Release_NoSSE) && !defined(_WIN64)
+static const char* Main_Build = "VS2022 (32-bit NoSSE)";
+#elif defined(_WIN64)
+static const char* Main_Build = "VS2022 (64-bit)";
+#else
+static const char* Main_Build = "VS2022 (32-bit)";
+#endif
+#elif _MSC_VER >= 1300
+static const char* Main_Build = "VS2003 (32-bit)";
+#elif _MSC_VER >= 1200
+static const char* Main_Build = "VS6 (32-bit)";
+#endif
+
 static BOOL Main_IsStrEqual(const char* A, const char* B)
 {
 #if _MSC_VER >= 1900
@@ -103,12 +117,11 @@ static void Main_OutputResult(const char* TestType, const char* TestTypePrefix, 
 		if (ftell(fp) == 0)
 		{
 			// if this is the first time we are writing the file, write the header.
-			fprintf(fp, "Version,Bits,Test Type,Iterations,Low Counter,Low Frequency,Seconds,Counter (High),Frequency (High)\n");
+			fprintf(fp, "Build,Test Type,Iterations,Low Counter,Low Frequency,Seconds,Counter (High),Frequency (High)\n");
 		}
 		
-		fprintf(fp, "%i,%i,%s_%s,%i,%u,%u,%g,%u,%u\n"
-			, _MSC_VER
-			, (int)(sizeof(void*) * 8)
+		fprintf(fp,"%s,%s_%s,%i,%u,%u,%g,%u,%u\n"
+			, Main_Build
 			, TestTypePrefix
 			, TestType
 			, NumIters
