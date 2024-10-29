@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+typedef float (_cdecl * LibFnPtr)(float);
+
 float _cdecl Q_rsqrt_clib( float number );
 float _cdecl Q_rsqrt_newton( float number );
 

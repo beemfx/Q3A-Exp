@@ -2,12 +2,12 @@
 
 #include <math.h>
 
-float _cdecl Q_rsqrt_clib( float number )
+float _cdecl Q_rsqrt_clib(float number)
 {
-	return 1.f / sqrtf( number );
+	return (float)(1.f / sqrt(number));
 }
 
-float _cdecl Q_rsqrt_newton( float number )
+float _cdecl Q_rsqrt_newton(float number)
 {
 	long i;
 	float x2, y;

@@ -7,51 +7,96 @@
 #include <math.h>
 #include <Windows.h>
 #include <conio.h>
+#include <time.h>
+
+enum main_test_type
+{
+	TT_RandSpeed,
+	TT_StaticSpeed,
+	TT_CompareFuncs,
+};
 
 static LARGE_INTEGER Main_HighPerfFreq;
 static BOOL Main_bPauseAtEnd = FALSE;
+static int Main_NumIters = 100000; // Default value of 100,000
+static float Main_RunningSum = 0.f;
+static enum main_test_type Main_TestType = TT_RandSpeed;
 
-static int Main_GetNumIters(int argc, char* argv[])
+static BOOL Main_IsStrEqual(const char* A, const char* B)
 {
-	int Out = 100000; // Default value of 100,000
-	int bNextIsIters = 0;
+#if _MSC_VER >= 1900
+	return !_stricmp(A, B);
+#else
+	return !stricmp(A, B);
+#endif
+}
+
+static void Main_ProcessCmdLine(int argc, char* argv[])
+{
+	BOOL bNextIsIters = FALSE;
+	BOOL bNextIsSeed = FALSE;
+	BOOL bNextIsTestType = FALSE;
 	int i = 0;
 
 	for (i = 0; i < argc; i++)
 	{
 		if (bNextIsIters)
 		{
-			bNextIsIters = 0;
-			Out = atoi(argv[i]);
+			bNextIsIters = FALSE;
+			Main_NumIters = atoi(argv[i]);
 		}
 
-#if _MSC_VER >= 1900
-		if (!_stricmp(argv[i], "-i"))
-#else
-		if (!stricmp(argv[i], "-i"))
-#endif
+		if (bNextIsSeed)
 		{
-			bNextIsIters = 1;
+			bNextIsSeed = FALSE;
+			srand(atoi(argv[i]));
 		}
 
-#if _MSC_VER >= 1900
-		if (!_stricmp(argv[i], "-pause"))
-#else
-		if (!stricmp(argv[i], "-pause"))
-#endif
+		if (bNextIsTestType)
+		{
+			bNextIsTestType = FALSE;
+
+			if (Main_IsStrEqual(argv[i], "rand_speed"))
+			{
+				Main_TestType = TT_RandSpeed;
+			}
+			else if (Main_IsStrEqual(argv[i], "static_speed"))
+			{
+				Main_TestType = TT_StaticSpeed;
+			}
+			else if (Main_IsStrEqual(argv[i], "compare_funcs"))
+			{
+				Main_TestType = TT_CompareFuncs;
+			}
+		}
+
+		if (Main_IsStrEqual(argv[i], "-i"))
+		{
+			bNextIsIters = TRUE;
+		}
+
+		if (Main_IsStrEqual(argv[i], "-seed"))
+		{
+			bNextIsSeed = TRUE;
+		}
+
+		if (Main_IsStrEqual(argv[i], "-pause"))
 		{
 			Main_bPauseAtEnd = TRUE;
 		}
-	}
 
-	return Out;
+		if (Main_IsStrEqual(argv[i], "-type"))
+		{
+			bNextIsTestType = TRUE;
+		}
+	}
 }
 
-static void Main_OutputResult(const char* TestType, int NumIters, LARGE_INTEGER Counter)
+static void Main_OutputResult(const char* TestType, const char* TestTypePrefix, int NumIters, LARGE_INTEGER Counter)
 {
 	double PerfFreq = (double)Main_HighPerfFreq.QuadPart;
 
-	FILE* fp = fopen("i-sqrt-results.csv", "at");
+	FILE* fp = fopen("rsqrt-results.csv", "at");
 	if (fp != NULL)
 	{
 		fseek(fp, 0, SEEK_END);
@@ -61,9 +106,10 @@ static void Main_OutputResult(const char* TestType, int NumIters, LARGE_INTEGER 
 			fprintf(fp, "Version,Bits,Test Type,Iterations,Low Counter,Low Frequency,Seconds,Counter (High),Frequency (High)\n");
 		}
 		
-		fprintf(fp, "%i,%i,%s,%i,%u,%u,%g,%u,%u\n"
+		fprintf(fp, "%i,%i,%s_%s,%i,%u,%u,%g,%u,%u\n"
 			, _MSC_VER
 			, (int)(sizeof(void*) * 8)
+			, TestTypePrefix
 			, TestType
 			, NumIters
 			, Counter.LowPart
@@ -82,7 +128,7 @@ static void Main_OutputResult(const char* TestType, int NumIters, LARGE_INTEGER 
 			, (float)(Counter.QuadPart/PerfFreq));
 }
 
-static void Main_DoTestA(int NumIters)
+static void Main_DoRandTestWith(int NumIters, LibFnPtr FnPtr, const char* TestName)
 {
 	float Total = 0.f;
 	int i = 0;
@@ -92,16 +138,19 @@ static void Main_DoTestA(int NumIters)
 	QueryPerformanceCounter(&StartTime);
 	for (i = 0; i < NumIters; i++)
 	{
-		float A = Q_rsqrt_clib(rand() / 1000.f);
+		float A = FnPtr(.00001f + (rand() / 1000.f));
 		Total += A;
 	}
 	QueryPerformanceCounter(&EndTime);
 	Duration.QuadPart = EndTime.QuadPart - StartTime.QuadPart;
-	Main_OutputResult("clib", NumIters, Duration);
-	printf("Sum: %g\n", Total); // If we didn't print out the Sum (or otherwise  use it), the x86 version would optimize everything out on Visual Studio 2022.
+	if (TestName != NULL)
+	{
+		Main_OutputResult(TestName, "rand", NumIters, Duration);
+		Main_RunningSum += Total;
+	}
 }
 
-static void Main_DoTestB(int NumIters)
+static void Main_DoStaticTestWith(int NumIters, LibFnPtr FnPtr, const char* TestName)
 {
 	float Total = 0.f;
 	int i = 0;
@@ -111,35 +160,17 @@ static void Main_DoTestB(int NumIters)
 	QueryPerformanceCounter(&StartTime);
 	for (i = 0; i < NumIters; i++)
 	{
-		float A = Q_rsqrt_newton(rand() / 1000.f);
+		float A = FnPtr((i+1) * 100.f);
 		Total += A;
 	}
 	QueryPerformanceCounter(&EndTime);
 	Duration.QuadPart = EndTime.QuadPart - StartTime.QuadPart;
-	Main_OutputResult("newton", NumIters, Duration);
-	printf("Sum: %g\n", Total); // If we didn't print out the Sum (or otherwise  use it), the x86 version would optimize everything out on Visual Studio 2022.
-}
-
-#if _MSC_VER >= 1900 && !defined(_WIN64)
-static void Main_DoTestC(int NumIters)
-{
-	float Total = 0.f;
-	int i = 0;
-	LARGE_INTEGER StartTime;
-	LARGE_INTEGER EndTime;
-	LARGE_INTEGER Duration;
-	QueryPerformanceCounter(&StartTime);
-	for (i = 0; i < NumIters; i++)
+	if (TestName != NULL)
 	{
-		float A = Q_rsqrt_VS6_clib(rand() / 1000.f);
-		Total += A;
+		Main_OutputResult(TestName, "static", NumIters, Duration);
+		Main_RunningSum += Total;
 	}
-	QueryPerformanceCounter(&EndTime);
-	Duration.QuadPart = EndTime.QuadPart - StartTime.QuadPart;
-	Main_OutputResult("vs6_vs2003_clib", NumIters, Duration);
-	printf("Sum: %g\n", Total); // If we didn't print out the Sum (or otherwise  use it), the x86 version would optimize everything out on Visual Studio 2022.
 }
-#endif
 
 #if _MSC_VER >= 1900 && !defined(_WIN64)
 
@@ -201,12 +232,33 @@ static void Main_CompareFuncs(int NumIters)
 
 #endif
 
+struct mainTestData
+{
+	LibFnPtr FnPtr;
+	const char* TestName;
+};
+
+static const struct mainTestData Main_AllTests[] =
+{
+	{Q_rsqrt_clib,"clib"},
+	{Q_rsqrt_newton,"newt"},
+#if _MSC_VER >= 1900 && !defined(_WIN64)
+	{Q_rsqrt_VS6_clib,"VS6_clib"},
+	{Q_rsqrt_VS6_newton,"VS6_newton"},
+	{Q_rsqrt_VS2003_clib,"VS2003_clib"},
+	{Q_rsqrt_VS2003_newton,"VS2003_newton"},
+#endif
+};
+
 int main(int argc, char* argv[])
 {
 	float Total = 0.f;
 	int i = 0;
-	const int NumIters = Main_GetNumIters(argc, argv);
 	BOOL bRes = FALSE;
+
+	srand((int)time(NULL)); // Must do srand before ProcessCmdLine since the command line may set the seed.
+	Main_ProcessCmdLine(argc, argv);
+
 	bRes = QueryPerformanceFrequency(&Main_HighPerfFreq);
 	if (!bRes)
 	{
@@ -214,12 +266,35 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	// Main_DoTestA(NumIters);
-	// Main_DoTestB(NumIters);
+	Main_DoRandTestWith(100, Q_rsqrt_newton, NULL); // The first run seems to always take longer, possibly due to caching, so do a dummy run.
+
+	switch (Main_TestType)
+	{
+		case TT_RandSpeed:
+		{
+			for (i = 0; i < _countof(Main_AllTests); i++)
+			{
+				Main_DoRandTestWith(Main_NumIters, Main_AllTests[i].FnPtr, Main_AllTests[i].TestName);
+			}
+		} break;
+		case TT_StaticSpeed:
+		{
+			for (i = 0; i < _countof(Main_AllTests); i++)
+			{
+				Main_DoStaticTestWith(Main_NumIters, Main_AllTests[i].FnPtr, Main_AllTests[i].TestName);
+			}
+		} break;
+		case TT_CompareFuncs:
+		{
 #if _MSC_VER >= 1900 && !defined(_WIN64)
-	// Main_DoTestC(NumIters);
-	Main_CompareFuncs(NumIters);
+			Main_CompareFuncs(Main_NumIters);
+#else
+			printf("Comparing functions is not available on this platform.\n");
 #endif
+		} break;
+	}
+
+	printf("Sum: %g\n", Main_RunningSum); // If we didn't print out the Sum (or otherwise  use it), the x86 version would sometimes optimize everything out on Visual Studio 2022.
 
 	if (Main_bPauseAtEnd)
 	{
