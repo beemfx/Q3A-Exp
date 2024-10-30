@@ -1,6 +1,7 @@
 // RSQRT_Test
 
 #include "Lib.h"
+#include "PrintHelp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,6 +16,7 @@
 
 enum main_test_type
 {
+	TT_None,
 	TT_RandSpeed,
 	TT_StaticSpeed,
 	TT_CompareFuncs,
@@ -22,9 +24,9 @@ enum main_test_type
 
 static LARGE_INTEGER Main_HighPerfFreq;
 static BOOL Main_bPauseAtEnd = FALSE;
-static int Main_NumIters = 100000; // Default value of 100,000
+static int Main_NumIters = 1; // Default value of 1.
 static float Main_RunningSum = 0.f;
-static enum main_test_type Main_TestType = TT_RandSpeed;
+static enum main_test_type Main_TestType = TT_None;
 
 #if _MSC_VER >= 1900
 #if defined(Config_Release_NoSSE) && !defined(_WIN64)
@@ -249,6 +251,27 @@ static void Main_CompareFuncs(int NumIters)
 
 #endif
 
+static void Main_PrintHelp()
+{
+	const char HelpText[] =
+		"Performs various RSQRT Tests.\n"
+		"Usage:\n"
+		"RSQRT_Test.exe -type name [-i num -seed value -pause]\n"
+		"\t-type: Set the type of test to perform.\n"
+		"\t\tname: One of the following\n"
+		"\t\t\trand_speed: Run a performance test of rsqrt using a random number.\n"
+		"\t\t\tstatic_speed: Run a performance test of rsqrt using a preset numbers (no additional function calls).\n"
+		"\t\t\tcompare_funcs: Compare the output of the different implementations of the rsqrt function using random numbers as input.\n"
+		"\t-i: Set the number of iterations.\n\t\tnum: An integer specifying the number of tests to perform for each rsqrt function. (Default 1).\n"
+		"\t-seed: Set the seed for randomization.\n\t\tvalue: An integer specifying the seed to start the randomization with."
+		" If not specified the system time will be used to initialize the randomization."
+		" This can be useful for deterministic tests.\n"
+		"\t-pause: When the tests complete show a prompt to press any key to exit the program.\n"
+		;
+
+	PrintHelp_PrintText(HelpText, _countof(HelpText) - 1);
+}
+
 struct mainTestData
 {
 	LibFnPtr FnPtr;
@@ -276,6 +299,18 @@ int main(int argc, char* argv[])
 	srand((int)time(NULL)); // Must do srand before ProcessCmdLine since the command line may set the seed.
 	Main_ProcessCmdLine(argc, argv);
 
+	if (Main_TestType == TT_None)
+	{
+		printf("RSQRT Test, 2024\n");
+		Main_PrintHelp();
+		if (Main_bPauseAtEnd)
+		{
+			printf("Press any key to exit.\n");
+			_getch();
+		}
+		return 1;
+	}
+
 	bRes = QueryPerformanceFrequency(&Main_HighPerfFreq);
 	if (!bRes)
 	{
@@ -287,6 +322,9 @@ int main(int argc, char* argv[])
 
 	switch (Main_TestType)
 	{
+		case TT_None:
+		{
+		} break;
 		case TT_RandSpeed:
 		{
 			for (i = 0; i < _countof(Main_AllTests); i++)

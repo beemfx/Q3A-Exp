@@ -36,9 +36,11 @@
       <AssemblerOutput Condition="'$(Configuration)|$(Platform)'=='Release_NoSSE|x64'">AssemblyAndSourceCode</AssemblerOutput>
     </ClCompile>
     <ClCompile Include="Code\Main.c" />
+    <ClCompile Include="Code\PrintHelp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Lib.h" />
+    <ClInclude Include="Code\PrintHelp.h" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Code\LibASM.asm">
