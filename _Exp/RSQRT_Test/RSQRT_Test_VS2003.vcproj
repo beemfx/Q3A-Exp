@@ -131,7 +131,8 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Assembling $(InputFileName)..."
-						CommandLine="ml.exe /c /nologo /Fo&quot;$(IntDir)/$(InputName).obj&quot; &quot;$(InputPath)&quot;"
+						CommandLine="ml.exe /c /nologo /Fo&quot;$(IntDir)/$(InputName).obj&quot; &quot;$(InputPath)&quot;
+"
 						Outputs="$(IntDir)/$(InputName).obj"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -139,12 +140,19 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Assembling $(InputFileName)..."
-						CommandLine="ml.exe /c /nologo /Fo&quot;$(IntDir)/$(InputName).obj&quot; &quot;$(InputPath)&quot;"
+						CommandLine="ml.exe /c /nologo /Fo&quot;$(IntDir)/$(InputName).obj&quot; &quot;$(InputPath)&quot;
+"
 						Outputs="$(IntDir)/$(InputName).obj"/>
 				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\Code\Main.c">
+			</File>
+			<File
+				RelativePath=".\Code\PrintHelp.cpp">
+			</File>
+			<File
+				RelativePath=".\Code\PrintHelp.h">
 			</File>
 		</Filter>
 	</Files>

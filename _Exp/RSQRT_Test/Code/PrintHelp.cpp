@@ -6,19 +6,23 @@
 class PhPrintHelp
 {
 private:
-	static const int TabSize = 2;
-	static const int MaxLen = 79;
+	static const int TabSize;
+	static const int MaxLen;
 
-	size_t CharIdx = 0;
+	size_t CharIdx;
 
-	int PreSpacing = 0;
-	int NumWordsAdded = 0;
-	int NumLinesInParagraph = 1;
+	int PreSpacing;
+	int NumWordsAdded;
+	int NumLinesInParagraph;
 	std::string CurLine;
 	std::string CurWord;
 
 public:
 	PhPrintHelp(const char* Text, size_t TextLen)
+		: CharIdx(0)
+		, PreSpacing(0)
+		, NumWordsAdded(0)
+		, NumLinesInParagraph(1)
 	{
 		PrintInternal(Text, TextLen);
 	}
@@ -106,6 +110,9 @@ private:
 		CurWord = "";
 	}
 };
+
+const int PhPrintHelp::TabSize = 2;
+const int PhPrintHelp::MaxLen = 79;
 
 extern "C" void PrintHelp_PrintText(const char* Text, size_t TextLen)
 {

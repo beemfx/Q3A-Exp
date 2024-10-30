@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include <crtdefs.h>
+#include <stdio.h>
 
 #if defined(__cplusplus)
 extern "C" {

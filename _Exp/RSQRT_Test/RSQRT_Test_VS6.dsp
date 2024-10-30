@@ -106,6 +106,14 @@ SOURCE=.\Code\Lib.h
 
 SOURCE=.\Code\Main.c
 # End Source File
+# Begin Source File
+
+SOURCE=.\Code\PrintHelp.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\Code\PrintHelp.h
+# End Source File
 # End Group
 # End Target
 # End Project
