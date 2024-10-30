@@ -1,3 +1,4 @@
+.586
 .model FLAT
 
 ;
@@ -6,6 +7,8 @@
 ; Shared Constants
 ;
 ;
+
+.data
 
 PUBLIC flt_half         ; 0.5f
 PUBLIC flt_one_and_half ; 1.5f
@@ -19,6 +22,7 @@ flt_one_and_half DD 03fc00000r         ; 1.5f
 dbl_one          DQ 03ff0000000000000r ; 1.0
 CONST ENDS
 
+.code
 
 ;
 ;

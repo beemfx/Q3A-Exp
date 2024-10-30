@@ -121,33 +121,33 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)_BUILD\$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)_BUILD\$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)_BUILD\$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoSSE|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)_BUILD\$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)_NoSSE</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)_BUILD\$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoSSE|x64'">
-    <OutDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)_$(PlatformShortName)_$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)_BUILD\$(ProjectName)_$(PlatformShortName)_$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)\</IntDir>
     <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

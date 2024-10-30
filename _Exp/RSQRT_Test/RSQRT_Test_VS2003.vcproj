@@ -4,6 +4,7 @@
 	Version="7.10"
 	Name="RSQRT_Test_VS2003"
 	ProjectGUID="{5884702A-D3E5-4D3E-86FF-7A03D04F7948}"
+	RootNamespace="RSQRT_Test_VS2003"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform
@@ -12,8 +13,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="Debug_VS2003"
-			IntermediateDirectory="Debug_VS2003"
+			OutputDirectory="_BUILD/Debug_VS2003"
+			IntermediateDirectory="_BUILD/Debug_VS2003"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -60,8 +61,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="Release_VS2003"
-			IntermediateDirectory="Release_VS2003"
+			OutputDirectory="_BUILD/Release_VS2003"
+			IntermediateDirectory="_BUILD/Release_VS2003"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -122,6 +123,25 @@
 			</File>
 			<File
 				RelativePath=".\Code\Lib.h">
+			</File>
+			<File
+				RelativePath=".\Code\LibASM.asm">
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Assembling $(InputFileName)..."
+						CommandLine="ml.exe /c /nologo /Fo&quot;$(IntDir)/$(InputName).obj&quot; &quot;$(InputPath)&quot;"
+						Outputs="$(IntDir)/$(InputName).obj"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Assembling $(InputFileName)..."
+						CommandLine="ml.exe /c /nologo /Fo&quot;$(IntDir)/$(InputName).obj&quot; &quot;$(InputPath)&quot;"
+						Outputs="$(IntDir)/$(InputName).obj"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\Code\Main.c">

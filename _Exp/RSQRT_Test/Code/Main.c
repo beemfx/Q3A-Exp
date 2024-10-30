@@ -9,6 +9,10 @@
 #include <conio.h>
 #include <time.h>
 
+#ifndef _countof
+#define _countof(_Array) (sizeof(_Array) / sizeof(_Array[0]))
+#endif
+
 enum main_test_type
 {
 	TT_RandSpeed,
@@ -185,7 +189,7 @@ static void Main_DoStaticTestWith(int NumIters, LibFnPtr FnPtr, const char* Test
 	}
 }
 
-#if _MSC_VER >= 1900 && !defined(_WIN64)
+#if LIB_INCLUDE_ASM
 
 static void Main_CompareFuncs(int NumIters)
 {
@@ -223,13 +227,13 @@ static void Main_CompareFuncs(int NumIters)
 		{
 			// Check to see when the VS6 CLIB version does not match the modern SSE2 version.
 			// I have not seen this happen as of writing this comment.
-			printf("    Modern vs VS6 CLIB Diff: %g.\n", fabsf(mdn_clib - vs6_clib));
+			printf("    Modern vs VS6 CLIB Diff: %g.\n", (float)fabs(mdn_clib - vs6_clib));
 		}
 		if (mdn_newt != vs6_newt)
 		{
 			// Check to see if the VS6 NEWT version does not match the modern SSE2 version,
 			// I have seen this happen quite often, but not every time.
-			printf("    Modern vs VS6 NEWT Diff: %g.\n", fabsf(mdn_newt - vs6_newt));
+			printf("    Modern vs VS6 NEWT Diff: %g.\n", (float)fabs(mdn_newt - vs6_newt));
 		}
 		if (vs6_clib != vs6_newt)
 		{
@@ -238,7 +242,7 @@ static void Main_CompareFuncs(int NumIters)
 			// It's probably worth experimenting to see what the range of numbers are
 			// that work well with this. Certainly for Quake 3 this works well but a
 			// game may be dealing with a very limited range.
-			printf("    NEWT vs CLIB (VS6) Diff: %g.\n", fabsf(vs6_clib - vs6_newt));
+			printf("    NEWT vs CLIB (VS6) Diff: %g.\n", (float)fabs(vs6_clib - vs6_newt));
 		}
 	}
 }
@@ -255,7 +259,7 @@ static const struct mainTestData Main_AllTests[] =
 {
 	{Q_rsqrt_clib,"clib"},
 	{Q_rsqrt_newton,"newt"},
-#if _MSC_VER >= 1900 && !defined(_WIN64)
+#if LIB_INCLUDE_ASM
 	{Q_rsqrt_VS6_clib,"VS6_clib"},
 	{Q_rsqrt_VS6_newton,"VS6_newton"},
 	{Q_rsqrt_VS2003_clib,"VS2003_clib"},
@@ -299,7 +303,7 @@ int main(int argc, char* argv[])
 		} break;
 		case TT_CompareFuncs:
 		{
-#if _MSC_VER >= 1900 && !defined(_WIN64)
+#if LIB_INCLUDE_ASM
 			Main_CompareFuncs(Main_NumIters);
 #else
 			printf("Comparing functions is not available on this platform.\n");
