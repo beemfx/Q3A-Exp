@@ -7,7 +7,7 @@ class PhPrintHelp
 {
 private:
 	static const int TabSize;
-	static const int MaxLen;
+	static const size_t MaxLen;
 
 	size_t CharIdx;
 
@@ -112,9 +112,9 @@ private:
 };
 
 const int PhPrintHelp::TabSize = 2;
-const int PhPrintHelp::MaxLen = 79;
+const size_t PhPrintHelp::MaxLen = 79;
 
 extern "C" void PrintHelp_PrintText(const char* Text, size_t TextLen)
 {
-	PhPrintHelp(Text, TextLen);
+	PhPrintHelp Worker(Text, TextLen);
 }
